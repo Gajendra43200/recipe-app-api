@@ -10,4 +10,24 @@ services:
       volumes:
         - ./app:/app
       command: >
-        sh -c "python manage.py runserver 0.0.0.0:8000"      
+        sh -c "python manage.py runserver 0.0.0.0:8000"
+      environment:
+        - DB_HOST=db
+        - POSTGRES_DB=devdb
+        - POSTGRES_USER=devuser
+        - POSTGRES_PASSWORD=PASSWORD
+      depends_on:
+        - db
+      # And this just tells Docker Compose that the app service depends on the DB service.So it will try and wait for the DB service to start before it starts the app service.
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=PASSWORD
+
+
+volumes:
+  dev-db-data: 
