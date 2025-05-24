@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',#So this just make sure that the core app is installed in our project.
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',#get this all value from docker-compose.yml
         'HOST': os.environ.get("DB_HOST"),
-        'NAME': os.environ.get("DB_NAMME"),
+        'NAME': "postgresql",
         'USER': os.environ.get("DB_USER"),
         'PASSWORD': os.environ.get("DB_PASS"),
 
