@@ -80,11 +80,10 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',  (default)
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',#get this all value from docker-compose.yml
-        'HOST': os.environ.get("DB_HOST"),
-        'NAME': "postgresql",
-        'USER': os.environ.get("DB_USER"),
-        'PASSWORD': os.environ.get("DB_PASS"),
-
+        'HOST': os.environ.get("DB_HOST", "localhost"),
+        'NAME': os.environ.get("POSTGRES_DB", "devdb"),
+        'USER': os.environ.get("POSTGRES_USER", "devuser"),
+        'PASSWORD': os.environ.get("POSTGRES_PASSWORD", "PASSWORD"),#gotted evv vriable from docker-compose.yml file vid=46
     }
 }
 
