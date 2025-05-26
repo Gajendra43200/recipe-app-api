@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',#So this just make sure that the core app is installed in our project.
+    'rest_framework',
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,9 @@ AUTH_USER_MODEL = 'core.User'
 # a model configuration and we're telling it to usecore, don't use us.
 # So out of all of the models defined in our core app,
 # choose the user model and we'll use that for our custom using model. vid:51
+REST_FRAMEWORK =  {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+}
+# What this does is it configures the Django rest framework to use this drive spectacular.
+# The open API, the auto schema to generate the schema so you can generate schemas using various different
+# schema specifications.
