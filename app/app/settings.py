@@ -130,3 +130,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'core.User'
+# What we're doing here is we're setting the authors
+# a model configuration and we're telling it to usecore, don't use us.
+# So out of all of the models defined in our core app,
+# choose the user model and we'll use that for our custom using model. vid:51
