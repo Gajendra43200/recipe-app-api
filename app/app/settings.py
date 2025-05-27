@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',#So this just make sure that the core app is installed in our project.
     'rest_framework',
+    'rest_framework.authtoken', # Now this comes built in to Jenga restaurant work, but it's a separate Django app, so we need to enable
     'drf_spectacular',
     'user',
     # So that's everything we need to do to enable our app in our project.

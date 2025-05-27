@@ -1,6 +1,12 @@
 # Serializers for user api vid: 68-71
-from django.contrib.auth import get_user_model
+from django.contrib.auth import (
+    get_user_model,
+    authenticate,
+)
+from django.utils.translation import gettext as _ # import as underscore because that is the common syntax for doing the translations with Django.
+
 from rest_framework import serializers
+
 
 class UserSerializer(serializers.ModelSerializer):
     # serializers for user objects 
@@ -17,3 +23,25 @@ class UserSerializer(serializers.ModelSerializer):
         return get_user_model().objects.create_user(**validate_data)
     # So serialize is simply just a way to convert objects to and from python objects.
     # They allow us to automatically validate and save things to a specific model that we define in our serialization.
+
+class AuthTokenSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(
+        style={'input_type': 'password'},
+        trim_whitespace=False,
+    )
+
+    def validate(self, attrs):
+        email = attrs.get('email')
+        password = attrs.get('password')
+        user = authenticate(
+            request=self.context.get('request'),
+            username=email,
+            password=password,
+        )
+        if not user:
+            msg= ('Unable  to authenticate with provided credentials')
+            raise serializers.ValidationError(msg, code='authorization')
+        
+        attrs['user'] = user
+        return attrs
