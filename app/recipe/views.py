@@ -5,13 +5,13 @@ from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from core.models import Recipe
-# from recipe import serializers
-from recipe.serializers import RecipeSerializer
+from recipe import serializers
+# from recipe.serializers import RecipeSerializer
 
 class RecipeViewSet(viewsets.ModelViewSet):
     # view set it specifically set up to work directly with a model.
     # view for manage recipe apis. 
-    serializer_class = RecipeSerializer
+    serializer_class = serializers.RecipeDetailsSerializer
     queryset = Recipe.objects.all()
     permission_classes = [IsAuthenticated]
 
@@ -23,5 +23,12 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         # Retrive recipes for authenticated user 
         return self.queryset.filter(user=self.request.user).order_by('-id')
+    
+    def get_serializer_class(self):
+        # Return the serializer class for request.
+        if self.action == 'list':
+            return serializers.RecipeSerializer
+        
+        return self.serializer_class  
         
     
