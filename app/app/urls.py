@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# http://127.0.0.1:8000/api/docs/#/user/user_token_create
+# http://127.0.0.1:8000/admin/core/user/add/
 from django.contrib import admin
 from django.urls import path, include # The URLs module allows us to include URLs from a different app.
 from drf_spectacular.views import (

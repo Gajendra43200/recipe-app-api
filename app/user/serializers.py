@@ -24,6 +24,17 @@ class UserSerializer(serializers.ModelSerializer):
     # So serialize is simply just a way to convert objects to and from python objects.
     # They allow us to automatically validate and save things to a specific model that we define in our serialization.
 
+    def update(self, instance, validated_data):
+        # Update and return user 
+        password = validated_data.pop('password', None)
+        user = super().update(instance, validated_data) # And this is going to perform all of the steps for updating the object.
+
+        if password:
+            user.set_password(password)
+            user.save()
+        return user
+
+
 class AuthTokenSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(
