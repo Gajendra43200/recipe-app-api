@@ -50,4 +50,6 @@ admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Recipe)
 # Generate the migration for the recipe model: docker-compose run --rm app sh -c "python manage.py makemigrations vif 79-83"
 # docker-compose run --rm app sh -c "python manage.py test"
+# The migration should be applied automatically by the startup command that we can figure out in Docker
 # Well, the Django test run out will automatically apply all the migrations every time you run it.
+# PS C:\Users\INDIAN\Desktop\Udemy cource\recipe-app-api> docker-compose run --rm app sh -c "python manage.py startapp recipe"

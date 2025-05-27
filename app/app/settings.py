@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'user',
     # So that's everything we need to do to enable our app in our project.
+    'recipe',
+    # Okay, so that's everything we need to do to enable our recipe. 70-85
 ]
 
 MIDDLEWARE = [
@@ -142,7 +144,10 @@ AUTH_USER_MODEL = 'core.User'
 # So out of all of the models defined in our core app,
 # choose the user model and we'll use that for our custom using model. vid:51
 REST_FRAMEWORK =  {
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # ✅ token-based auth
+    ]
 }
 # What this does is it configures the Django rest framework to use this drive spectacular.
 # The open API, the auto schema to generate the schema so you can generate schemas using various different

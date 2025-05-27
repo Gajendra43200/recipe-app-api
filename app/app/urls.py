@@ -33,5 +33,6 @@ urlpatterns = [
     ),
     # Then we have API forward slash docs that will serve the swagger documentation that is going to use our
     # schema to generate a graphical user interface for our API documentation.
-    path('api/user/', include('user.urls'))
+    path('api/user/', include('user.urls')),
+    path('api/recipe', include('recipe.urls')),
 ]
