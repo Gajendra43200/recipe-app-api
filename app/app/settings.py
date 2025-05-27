@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',#So this just make sure that the core app is installed in our project.
     'rest_framework',
-    'drf_spectacular'
+    'drf_spectacular',
+    'user',
+    # So that's everything we need to do to enable our app in our project.
 ]
 
 MIDDLEWARE = [
