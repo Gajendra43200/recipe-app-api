@@ -6,6 +6,7 @@ from django.urls import (
 
 from rest_framework.routers import DefaultRouter
 from recipe import views
+from recipe.views import TagViewSet
 
 router = DefaultRouter()
 router.register('recipe', views.RecipeViewSet)
@@ -13,6 +14,7 @@ router.register('recipe', views.RecipeViewSet)
 # Because we're using the model view set, it's
 # going to support all the available methods for create,
 # read, update and delete those.
+router.register('tags', TagViewSet)
 
 app_name = 'recipe'
 # define the name which is used to identify the name when we're doing the reverse lookup of URLs.

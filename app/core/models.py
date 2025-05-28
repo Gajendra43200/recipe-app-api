@@ -8,6 +8,7 @@ from django.contrib.auth.models import (
 from django.conf import settings 
 
 
+
 class UserManager(BaseUserManager):
     # Manager for user 
     def create_user(self, email, password=None, **extra_fields):
@@ -40,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # Then we have the username field here which defines the field that we want to use for authentication.
 
 class Recipe(models.Model):
-    'Recipe object.vid:79-84'
+    # 'Recipe object.vid:79-84'
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
@@ -54,9 +55,23 @@ class Recipe(models.Model):
     link = models.CharField(max_length=255, blank=True)
     # Then we have a link which can be used to store a link to the recipe if there's some external link or
     # something that you want to link out to.
+    tag = models.ManyToManyField('Tag')
+    # So we use the many to many field because we could have many different recipes that have many differentn
+    # tags.
 
     def __str__(self):
         # the string representation of that object.
         # So if you have an object of the recipe and 
         # you print it out as a string, then this is what will be returned.
         return self.title
+    
+class Tag(models.Model):
+    # Tag for filtering recipe vid:91-96 -s 14
+    name = models.CharField(max_length=50)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.name
