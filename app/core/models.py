@@ -56,7 +56,7 @@ class Recipe(models.Model):
     # Then we have a link which can be used to store a link to the recipe if there's some external link or
     # something that you want to link out to.
     tags = models.ManyToManyField('Tag')
-    ingredients = models.ManyToManyField('Ingredient')
+    ingredients = models.ManyToManyField('Ingredient') # vid 106-112 section 15 step 3
     # So we use the many to many field because we could have many different recipes that have many differentn
     # tags.
 
@@ -76,7 +76,7 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-
+    # vid 106-112 section 15 step 2
 class Ingredient(models.Model):
     name = models.CharField(max_length=225)
     user  = models.ForeignKey(
