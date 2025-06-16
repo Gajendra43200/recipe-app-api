@@ -55,7 +55,8 @@ class Recipe(models.Model):
     link = models.CharField(max_length=255, blank=True)
     # Then we have a link which can be used to store a link to the recipe if there's some external link or
     # something that you want to link out to.
-    tag = models.ManyToManyField('Tag')
+    tags = models.ManyToManyField('Tag')
+    ingredients = models.ManyToManyField('Ingredient')
     # So we use the many to many field because we could have many different recipes that have many differentn
     # tags.
 
@@ -73,5 +74,14 @@ class Tag(models.Model):
         on_delete=models.CASCADE,
     )
 
+    def __str__(self):
+        return self.name
+
+class Ingredient(models.Model):
+    name = models.CharField(max_length=225)
+    user  = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
     def __str__(self):
         return self.name

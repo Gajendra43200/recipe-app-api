@@ -49,6 +49,7 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Recipe)
 admin.site.register(models.Tag)
+admin.site.register(models.Ingredient)
 # Generate the migration for the recipe model: docker-compose run --rm app sh -c "python manage.py makemigrations vif 79-83"
 # docker-compose run --rm app sh -c "python manage.py test"
 # The migration should be applied automatically by the startup command that we can figure out in Docker
