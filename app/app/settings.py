@@ -156,3 +156,9 @@ REST_FRAMEWORK =  {
 # What this does is it configures the Django rest framework to use this drive spectacular.
 # The open API, the auto schema to generate the schema so you can generate schemas using various different
 # schema specifications.
+
+SPECTACULAR_SETTINGS = {
+    'COMPONENT_SPLIT_REQUEST': True,
+}
+# I needed to enable in order to get the image obliged to work through the
+# browser interface.
