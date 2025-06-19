@@ -3,7 +3,7 @@ version: '3.9'
 services:
   app:
     build:
-      context:
+      context: .
     restart: always
     volumes:
       - static-data:/vol/web
@@ -15,7 +15,7 @@ services:
       - SECRET_KEY=${DJANGO_SECRET_KEY}
       - ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
     depends_on:
-      -db
+      - db
 
   db:
     image: postgres:13-alpine
@@ -34,7 +34,7 @@ services:
     depends_on:
       - app
     ports:
-      - 80:8000
+      - 8000:8000
     volumes:
       - static-data:/vol/static
 
